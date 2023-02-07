@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class WareHouseController {
 
     private final WareHouseService wareHouseService;
-    @GetMapping("/itemCode")
+    @GetMapping("/{itemCode}")
     @ResponseStatus(HttpStatus.OK)
     public boolean isItemInStock(@PathVariable("itemCode") String itemCode){
         return wareHouseService.isItemInStock(itemCode);

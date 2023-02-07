@@ -4,6 +4,7 @@ import com.sdp.warehouseservice.repository.WareHouseRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -12,8 +13,11 @@ import java.util.Optional;
 public class WareHouseService {
 
     private final WareHouseRepository wareHouseRepository;
+
+    @Transactional(readOnly = true)
     public boolean isItemInStock(String itemCode){
-        return wareHouseRepository.findByItemCode().isPresent();
+
+        return wareHouseRepository.findByItemCode(itemCode).isPresent();
     }
 
 }
